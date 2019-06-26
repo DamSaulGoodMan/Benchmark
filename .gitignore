@@ -1,2 +1,5 @@
 # JetBrains conf file
 .idea/
+.vs/
+*.DS_STORE
+*/obj/
