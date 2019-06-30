@@ -1,4 +1,9 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using Util;
+
 namespace Exportateur
 {
     public class JSONTypeExport : ITypeExport
@@ -10,12 +15,14 @@ namespace Exportateur
             set => _name = name;
         }
 
-        public JSONTypeExport()
+        public void Export(BenchmarkRecap recap,string path) 
         {
-        }
-
-        public void Export() 
-        {
+            MemoryStream ms = new MemoryStream();
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(BenchmarkRecap));
+            ser.WriteObject(ms, recap);
+            byte[] json = ms.ToArray();
+            ms.Close();
+            Writer.Instance.Write(path,Encoding.UTF8.GetString(json, 0, json.Length));
         }
     }
 }
