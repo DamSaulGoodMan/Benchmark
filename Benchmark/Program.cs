@@ -1,4 +1,5 @@
 ﻿using System;
+using Exportateur;
 
 namespace Benchmark
 {
@@ -6,7 +7,11 @@ namespace Benchmark
     {
         static void Main(string[] args)
         {
-
+            var benchmarkJSon = new CreateBenchmark()
+                .Name("JsonBench")
+                .Timers(new string[] {"MainTimer", "EndTimer"})
+                .TypeOfExport(new JSONTypeExport())
+                .Create();
         }
 
         public void Start() 
