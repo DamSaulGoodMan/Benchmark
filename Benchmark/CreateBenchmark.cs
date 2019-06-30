@@ -21,13 +21,10 @@ namespace Benchmark
             return this;
         }
 
-        public CreateBenchmark Timers(string[] timersNames)
+        public CreateBenchmark AddTimer(string timerName)
         {
-            foreach (var name in timersNames)
-            {
-                _benchmark.Data._testZones.Add(name, new TestZone(name, new Stack<long>()));
-            }
-
+            _benchmark.Data._testZones.Add(timerName, new TestZone(timerName, new Stack<long>()));
+            
             return this;
         }
 

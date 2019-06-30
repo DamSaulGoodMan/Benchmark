@@ -10,7 +10,8 @@ namespace Benchmark
             var exportRetriever = new ExportRetrieve();
             var benchmarkJSon = new CreateBenchmark()
                 .Name("JsonBench")
-                .Timers(new string[] {"WholeProgramTimer", "LoopTimer"})
+                .AddTimer("WholeProgramTimer")
+                .AddTimer("LoopTimer")
                 .TypeOfExport(exportRetriever.GetExportClass("XML"))
                 .Create();
             
