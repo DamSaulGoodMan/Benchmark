@@ -3,7 +3,7 @@ namespace Exportateur
 {
     public interface ITypeExport
     {
-        string name;
+        string name { get; set; }
         void Export();
     }
 }
