@@ -7,26 +7,23 @@ namespace Benchmark
     {
         static void Main(string[] args)
         {
+            var exportRetriever = new ExportRetrieve();
             var benchmarkJSon = new CreateBenchmark()
                 .Name("JsonBench")
-                .Timers(new string[] {"MainTimer", "EndTimer"})
-                .TypeOfExport(new JSONTypeExport())
+                .Timers(new string[] {"WholeProgramTimer", "LoopTimer"})
+                .TypeOfExport(exportRetriever.GetExportClass("XML"))
                 .Create();
-        }
-
-        public void Start() 
-        {
-        
-        }
-
-        public void Stop()
-        {
-        
-        }
-
-        public void Interrupt() 
-        {
-        
+            
+            benchmarkJSon.StartRecord("WholeProgramTimer");
+            for (var cnt = 0; cnt < 100;)
+            {
+                benchmarkJSon.StartRecord("LoopTimer");
+                cnt++;
+                benchmarkJSon.EndRecord("LoopTimer");
+            }
+            benchmarkJSon.EndRecord("WholeProgramTimer");
+            
+            benchmarkJSon.Export("/home/damsaulgoodman/");
         }
     }
 }

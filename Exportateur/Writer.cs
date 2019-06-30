@@ -32,7 +32,8 @@ namespace Exportateur
         {
             if (!File.Exists(path))
             {
-                File.Create(path);
+                File.Create(path).Close();
+                
             }
             File.OpenWrite(path).Write(Encoding.ASCII.GetBytes(content));
         }

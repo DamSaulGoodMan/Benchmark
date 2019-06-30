@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Exportateur;
+using Util;
 
 namespace Benchmark
 {
@@ -16,7 +17,7 @@ namespace Benchmark
         
         public CreateBenchmark Name(string benchmarkName)
         {
-            _benchmark.Name = benchmarkName;
+            _benchmark.Data = new BenchmarkData(benchmarkName,new Dictionary<string, TestZone>());
             return this;
         }
 
@@ -24,7 +25,7 @@ namespace Benchmark
         {
             foreach (var name in timersNames)
             {
-                _benchmark.DataTimers.Add(name, new List<double>());
+                _benchmark.Data._testZones.Add(name, new TestZone(name, new Stack<long>()));
             }
 
             return this;
@@ -32,7 +33,8 @@ namespace Benchmark
 
         public CreateBenchmark TypeOfExport(ITypeExport typeExport)
         {
-            _benchmark.Exporter = typeExport;
+            _benchmark.Exporter = new ExportPool(new List<ITypeExport>());
+            _benchmark.Exporter.AddExport(typeExport);
             return this;
         }
 

@@ -15,14 +15,15 @@ namespace Exportateur
             set => _name = name;
         }
 
-        public void Export(BenchmarkRecap recap,string path) 
+        public void Export(BenchmarkData data, string path) 
         {
             MemoryStream ms = new MemoryStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(BenchmarkRecap));
-            ser.WriteObject(ms, recap);
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(BenchmarkData));
+            ser.WriteObject(ms, data);
             byte[] json = ms.ToArray();
             ms.Close();
-            Writer.Instance.Write(path,Encoding.UTF8.GetString(json, 0, json.Length));
+            Writer.Instance.Write(path + "/" + data._name + ".json",
+                Encoding.UTF8.GetString(json, 0, json.Length));
         }
     }
 }

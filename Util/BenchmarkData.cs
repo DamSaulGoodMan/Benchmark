@@ -5,10 +5,10 @@ using System.Runtime.Serialization;
 namespace Util
 {
     [DataContract]
-    public class BenchmarkRecap
+    public class BenchmarkData
     {
 
-        public BenchmarkRecap(string name, List<TestZone> testZones)
+        public BenchmarkData(string name, Dictionary<string, TestZone> testZones)
         {
             this.name = name;
             this.testZones = testZones;
@@ -18,9 +18,9 @@ namespace Util
         [DataMember]
         public string _name { get => name; set => this.name = _name; }
 
-        private List<TestZone> testZones;
+        private Dictionary<string, TestZone> testZones;
         [DataMember]
-        public List<TestZone> _testZones { get => testZones; set => this.testZones = _testZones; }
+        public Dictionary<string, TestZone> _testZones { get => testZones; set => this.testZones = _testZones; }
 
     }
 }

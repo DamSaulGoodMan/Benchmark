@@ -16,15 +16,16 @@ namespace Exportateur
             set => _name = name;
         }
 
-        public void Export(BenchmarkRecap recap,string path)
+        public void Export(BenchmarkData data, string path)
         {
             MemoryStream ms = new MemoryStream();
-            DataContractSerializer dcs = new DataContractSerializer(typeof(BenchmarkRecap));
+            DataContractSerializer dcs = new DataContractSerializer(typeof(BenchmarkData));
             XmlDictionaryWriter xdw = XmlDictionaryWriter.CreateTextWriter(ms, Encoding.UTF8);
-            dcs.WriteObject(xdw, recap);
+            dcs.WriteObject(xdw, data);
             byte[] xml = ms.ToArray();
             ms.Close();
-            Writer.Instance.Write(path, Encoding.UTF8.GetString(xml, 0, xml.Length));
+            Writer.Instance.Write(path + "/" + data._name + ".xml"
+                , Encoding.UTF8.GetString(xml, 0, xml.Length));
         }
     }
 }

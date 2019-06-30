@@ -6,6 +6,6 @@ namespace Exportateur
     public interface ITypeExport
     {
         string name { get; set; }
-        void Export(BenchmarkRecap recap, string path);
+        void Export(BenchmarkData data, string path);
     }
 }

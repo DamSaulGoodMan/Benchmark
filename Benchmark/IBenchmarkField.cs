@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using Exportateur;
+using Util;
 
 namespace Benchmark
 {
     public interface IBenchmarkField
     {
-        string Name { get; set; }
-        Dictionary<string, List<double>> DataTimers { get; set; }
+        BenchmarkData Data { get; set; }
 
-        ITypeExport Exporter { get; set; }
+        ExportPool Exporter { get; set; }
     }
 }

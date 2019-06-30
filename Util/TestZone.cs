@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Util
@@ -6,19 +7,20 @@ namespace Util
     [DataContract]
     public class TestZone
     {
-        public TestZone(string name,int indice)
+        public TestZone(string name, Stack<long> executionTimeList)
         {
             this.name = name;
-            this.indice = indice;
+            this.executionTimeList = executionTimeList;
         }
 
         private string name;
         [DataMember]
         public string _name { get => name; set => this.name = _name; }
 
-        private int indice;
+        private Stack<long> executionTimeList;
         [DataMember]
-        public int _indice { get => indice; set => this.indice = _indice; }
+        public Stack<long> _executionTimeList { get => executionTimeList; 
+            set => this.executionTimeList = _executionTimeList; }
 
     }
 }
