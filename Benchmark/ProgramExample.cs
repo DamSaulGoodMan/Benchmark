@@ -3,7 +3,7 @@ using Exportateur;
 
 namespace Benchmark
 {
-    class Program
+    class ProgramExample
     {
         static void Main(string[] args)
         {
