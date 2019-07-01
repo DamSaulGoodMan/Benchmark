@@ -13,6 +13,7 @@ namespace Benchmark
         public CreateBenchmark()
         {
             _benchmark = new PrivateBenchmark();
+            _benchmark.Exporter = new ExportPool(new List<ITypeExport>());
         }
         
         public CreateBenchmark Name(string benchmarkName)
@@ -30,7 +31,6 @@ namespace Benchmark
 
         public CreateBenchmark TypeOfExport(ITypeExport typeExport)
         {
-            _benchmark.Exporter = new ExportPool(new List<ITypeExport>());
             _benchmark.Exporter.AddExport(typeExport);
             return this;
         }

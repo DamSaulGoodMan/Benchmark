@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Util;
 
@@ -20,6 +21,7 @@ namespace Exportateur
         {
             foreach (var export in _listExport)
             {
+                Console.Out.WriteLine(export.name);
                 export.Export(benchmarkData, path);
             }
         }

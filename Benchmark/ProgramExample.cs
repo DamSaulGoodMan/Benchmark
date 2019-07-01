@@ -17,6 +17,7 @@ namespace Benchmark
                 .AddTimer("WholeProgramTimer")
                 .AddTimer("LoopTimer")
                 .TypeOfExport(exportRetriever.GetExportClass("XML"))
+                .TypeOfExport(exportRetriever.GetExportClass("JSON"))
                 .Create();
             
             // Le Benchmark s'utilise en appellant la méthode StartRecord avec le nom d'un timer et StopRecord sur le même nom
