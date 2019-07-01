@@ -7,7 +7,6 @@ namespace Exportateur
     {
         private readonly Dictionary<string, ITypeExport> _dicoExportType = new Dictionary<string, ITypeExport>()
         {
-            {"JSON", new JSONTypeExport()},
             {"XML", new XMLTypeExport()}
         };
         
